@@ -1,0 +1,3 @@
+cd Traffic-Sign-Recognition-Using-YOLO-main/yolov5
+python detect.py --weights yolov5s.pt --source 0
+python detect.py --weights yolov5s.pt --source video.mp4
