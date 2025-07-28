@@ -1,45 +1,98 @@
-Dưới đây là một phiên bản hoàn thiện cho mô tả về việc sử dụng CNN, lọc màu và YOLOv5 trong dự án nhận diện biển báo giao thông:
-
----
-
-## Nhận diện Biển báo Giao thông với CNN, Lọc Màu và YOLOv5
+# 🚦 Nhận diện Biển báo Giao thông với CNN, Lọc Màu và YOLOv5
 
 ![image](https://github.com/PVL-Linh/Traffic_Sign_Recognition_NhanDienBienBaoGiaoThong/assets/136146829/5d558b04-06ac-49f1-a098-90a0f855c83b)
 
-### Mô tả Dự án
+## 📌 Mô tả Dự án
 
-Trong dự án này, chúng tôi sử dụng mạng nơ-ron tích chập (CNN) để huấn luyện mô hình nhận diện biển báo giao thông từ ảnh. Sau đó, chúng tôi sử dụng phương pháp lọc màu để phát hiện biển báo từ các màu sắc phổ biến như đỏ, vàng và xanh. Cuối cùng, chúng tôi triển khai mô hình YOLOv5 để phát hiện biển báo trong video.
+Dự án này kết hợp giữa học sâu (deep learning) và xử lý ảnh truyền thống để nhận diện biển báo giao thông từ ảnh và video. Cụ thể:
 
-### Các Bước Thực Hiện
+* Huấn luyện mô hình **CNN** để phân loại biển báo.
+* Sử dụng **lọc màu đỏ, vàng, xanh** nhằm phát hiện vùng nghi ngờ chứa biển báo.
+* Áp dụng **YOLOv5** để phát hiện biển báo trong video theo thời gian thực.
 
-1. **Huấn luyện Mô hình CNN:**
-   - Sử dụng mạng nơ-ron tích chập để huấn luyện mô hình nhận diện biển báo giao thông từ tập dữ liệu ảnh đã được gán nhãn.
-   - Cải thiện hiệu suất của mô hình bằng cách điều chỉnh siêu tham số và kiến trúc mạng.
+---
 
-2. **Sử dụng Lọc Màu Đỏ, Vàng và Xanh:**
-   - Áp dụng các bộ lọc màu đỏ, vàng và xanh để phát hiện các biển báo giao thông từ ảnh.
-   - Sử dụng phương pháp phân đoạn hoặc kỹ thuật xử lý ảnh để tách biển báo từ nền.
+## 🧠 Các Bước Thực Hiện
 
-3. **Triển Khai YOLOv5 cho Video:**
-   - Sử dụng mô hình YOLOv5 để phát hiện biển báo giao thông trong video.
-   - Cấu hình và huấn luyện mô hình YOLOv5 cho phù hợp với yêu cầu của dự án.
+### 1️⃣ Huấn luyện Mô hình CNN
 
-### Cách Triển Khai
+* Huấn luyện từ tập dữ liệu ảnh biển báo đã gán nhãn.
+* Dùng PyTorch hoặc TensorFlow để xây dựng mô hình.
+* Tối ưu hóa bằng điều chỉnh số lớp, hàm kích hoạt, learning rate...
 
-1. **Triển Khai Mô hình CNN:**
-   - Sử dụng một framework deep learning như TensorFlow hoặc PyTorch để huấn luyện và triển khai mô hình CNN.
-   - Chạy mô hình trên dữ liệu thử nghiệm để đánh giá hiệu suất và chính xác.
+### 2️⃣ Lọc Màu Đỏ, Vàng và Xanh
 
-2. **Lọc Màu:**
-   - Sử dụng các thư viện xử lý ảnh như OpenCV để thực hiện lọc màu.
-   - Điều chỉnh các tham số lọc để tối ưu hiệu suất phát hiện.
+* Dùng OpenCV để lọc theo khoảng HSV tương ứng.
+* Áp dụng phân đoạn ảnh để tách vùng có khả năng chứa biển báo.
 
-3. **Triển Khai YOLOv5:**
-   - Sử dụng mã nguồn mở của YOLOv5 để triển khai mô hình trên video.
-   - Đảm bảo cấu hình và cài đặt môi trường phù hợp cho YOLOv5.
+### 3️⃣ Nhận diện bằng YOLOv5
 
-### Kết Luận
+* Sử dụng mô hình YOLOv5 đã tinh chỉnh để phát hiện biển báo trong video.
+* Cấu hình lại anchor boxes, augment dữ liệu để phù hợp với đặc trưng biển báo.
 
-Dự án này cung cấp một giải pháp toàn diện cho việc nhận diện biển báo giao thông từ ảnh và video. Sử dụng mạng nơ-ron tích chập, lọc màu và mô hình YOLOv5, chúng tôi có thể xây dựng một hệ thống nhận diện chính xác và hiệu quả cho các ứng dụng liên quan đến an toàn giao thông và tự động hóa lái xe.
+---
 
---- 
+## 🛠️ Cách Triển Khai
+
+### ▶️ CNN:
+
+```bash
+# Cài đặt môi trường
+pip install tensorflow keras
+
+# Huấn luyện mô hình
+python train_cnn.py
+```
+
+### ▶️ Lọc Màu:
+
+```python
+import cv2
+hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+mask_red = cv2.inRange(hsv, lower_red, upper_red)
+```
+
+### ▶️ YOLOv5:
+
+```bash
+# Clone YOLOv5
+https://github.com/ultralytics/yolov5.git
+cd yolov5
+pip install -r requirements.txt
+
+# Huấn luyện mô hình
+python train.py --img 640 --batch 16 --epochs 50 --data data.yaml --weights yolov5s.pt
+```
+
+---
+
+## 🔍 Kết Luận
+
+Dự án là một giải pháp toàn diện cho bài toán nhận diện biển báo giao thông với các ưu điểm:
+
+✅ Chính xác cao nhờ học sâu (CNN, YOLOv5)
+✅ Phát hiện nhanh theo thời gian thực
+✅ Kết hợp truyền thống (lọc màu) và hiện đại (deep learning)\\
+
+Phù hợp với các ứng dụng an toàn giao thông, hệ thống hỗ trợ lái xe thông minh, và nghiên cứu học thuật.
+
+---
+
+## 🤝 Đóng góp
+
+Chúng tôi hoan nghênh mọi đóng góp từ cộng đồng!
+Bạn có thể:
+
+* Mở **Issue** nếu gặp lỗi
+* Tạo **Pull Request** để cải tiến mô hình hoặc giao diện
+
+---
+
+## 📫 Liên hệ
+
+📧 Email: [phamvanlinh.sibinh2@gmail.com](phamvanlinh.sibinh2@gmail.com)
+🌐 GitHub: [github.com/PVL-Linh](https://github.com/PVL-Linh)
+
+---
+
+⭐ Nếu bạn thấy dự án hữu ích, hãy **Star** và **Fork** để ủng hộ chúng tôi!
